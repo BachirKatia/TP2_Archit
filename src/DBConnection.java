@@ -4,14 +4,15 @@ import java.sql.SQLException;
 
 public class DBConnection {
 	   
-		String BDD = "nomBD";
-		String url = "jdbc:mysql://localhost:3306/" + BDD;
-		String user = "root";
-		String passwd = "";
+		String BDD = "TP2_DB";
+		String url = "jdbc:postgresql://localhost:5432/TP2_DB" + BDD;
+		String user = "postgres";
+		String passwd = "postgres";
 	    private Connection conn;
+	    private static DBConnection instance;
 
 	   
-	    public DBConnection() throws SQLException {
+	    private DBConnection() throws SQLException {
 			conn=DriverManager.getConnection(url, user,passwd);
 		}
 
@@ -19,6 +20,12 @@ public class DBConnection {
 	    public Connection getConn() {
 			return conn;
 		}
+	    public static DBConnection getInstance() throws SQLException {
+	    	if(instance == null) {
+	    		instance = new DBConnection();
+	    	}
+	    	return instance;
+	    }
 
 
 		
