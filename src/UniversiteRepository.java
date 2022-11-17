@@ -5,10 +5,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UniversiteRepository {
+public class UniversiteRepository implements IUniversiteRepository {
 	
-	
-	Universite GetById(int universityId) throws SQLException {
+	@Override
+	 public Universite GetById(int universityId) throws SQLException {
 		
 		DBConnection BD= DBConnection.getInstance();
 		Connection connect=BD.getConn(); 
