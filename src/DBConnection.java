@@ -10,7 +10,7 @@ public class DBConnection {
 		String passwd = "postgres";
 	    private Connection conn;
 	    private static DBConnection instance;
-
+ 
 	   
 	    private DBConnection() throws SQLException {
 			conn=DriverManager.getConnection(url, user,passwd);

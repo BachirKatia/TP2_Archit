@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -5,15 +6,30 @@ import java.sql.Statement;
 import java.util.ArrayList;
 public class EtudiantService {
 	
+	private IEtudiantRepository StudRep;
+	private IUniversiteRepository UnivRep;
+	private IJournal j;
+ 
+	public void setEtudRep(IEtudiantRepository StudRep) {
+		this.StudRep = StudRep;
+	}
+	public void setUnivRep(IUniversiteRepository UnivRep) {
+		this.UnivRep = UnivRep;
+	}
+	public void setJournal(IJournal j) {
+		this.j = j;
+	}
+	public IJournal getJournal() {
+		return this.j;
+	}
 	
-	boolean inscription (int matricule, String nom, String prénom, String email,String pwd, int id_universite) throws SQLException	
+	boolean inscription ( int matricule, String nom, String prenom, String email,String pwd, int id_universite) throws SQLException, IOException	
 	{
-		IEtudiantRepository StudRep= new EtudiantRepository();
-	    IUniversiteRepository UnivRep= new UniversiteRepository();
-	    Etudiant stud = new Etudiant(matricule, nom, prénom, email,pwd,id_universite);
+		
+	    Etudiant stud = new Etudiant(matricule, nom, prenom, email,pwd,id_universite);
 	    Universite univ=UnivRep.GetById(id_universite);
 	    
-	    System.out.println("Log: début de l'opération d'ajout de l'étudiant avec matricule "+matricule);
+	    j.outPut_Msg("Log: dï¿½but de l'opï¿½ration d'ajout de l'ï¿½tudiant avec matricule "+matricule);
 	    
 	    if(email == null || email.length() == 0)
 	    {
@@ -42,7 +58,7 @@ public class EtudiantService {
 	     }                           
 	     
 		 StudRep.add(stud);
-		 System.out.println("Log: Fin de l'opération d'ajout de l'étudiant avec matricule "+matricule);
+		 j.outPut_Msg("Log: Fin de l'opï¿½ration d'ajout de l'ï¿½tudiant avec matricule "+matricule);
 		 return true;
 	    
 		
