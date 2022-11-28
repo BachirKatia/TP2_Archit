@@ -64,11 +64,12 @@ public class EtudiantRepository implements IEtudiantRepository  {
 //		connect.close();
 		return false;
 	}
-	
-//	public boolean VerifEmailMat(int Mat, String Email) throws SQLException, IOException	
-//	{
-//		return ( Exists(Email) || Exists(Mat) || Email == null || Email.length() == 0 );
-//
-//	}
+	@Override
+	public boolean VerifEmailMat(Etudiant etud ,IJournal j) throws SQLException, IOException	
+	{	String  mail = etud.getEmail();
+		int mat = etud.getMatricule();
+		return ( Exists(mail,j) || Exists(mat,j) || mail == null || mail.length() == 0 );
+
+	}
 
 }

@@ -9,7 +9,7 @@ public class EtudiantService {
 	private IEtudiantRepository StudRep;
 	private IUniversiteRepository UnivRep;
 	private IJournal j;
-//	private Etudiant stud;
+	
  
 	public void setEtudRep(IEtudiantRepository StudRep) {
 		this.StudRep = StudRep;
@@ -35,33 +35,13 @@ public class EtudiantService {
 	    
 	    j.outPut_Msg("Log: d�but de l'op�ration d'ajout de l'�tudiant avec matricule "+matricule);
 	    
-//		if (StudRep.VerifEmailMat(matricule, email))
-//	    {	return false;	}
-//		
-//		
-	    if(email == null || email.length() == 0)
-	    {
-	    	return false;
-	    }
+		if (StudRep.VerifEmailMat(stud,j))
+	    {	return false;	}
 	    
-	    if (StudRep.Exists(matricule,j))
-	    {
-	        return false;
-	    }
-	    
-		if (StudRep.Exists(email,j))
-	    {
-	        return false;
-	    }
 		
-		 if (univ.getPack() == TypePackage.Standard)
-	     {
-	          stud.setNbLivreMensuel_Autorise(10);
-	     }
-	     else if (univ.getPack() == TypePackage.Premium)
-	     {
-	    	 stud.setNbLivreMensuel_Autorise(10*2);
-	     }                           
+	  
+	    int nmbDeLiver = ((UniversiteRepository)UnivRep).NmbLivre(UnivRep.GetById(stud.getId_universite(),j));
+		stud.setNbLivreMensuel_Autorise(nmbDeLiver);                   
 	     
 		 StudRep.add(stud ,j);
 		 j.outPut_Msg("Log: Fin de l'op�ration d'ajout de l'�tudiant avec matricule "+matricule);
