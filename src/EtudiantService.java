@@ -9,6 +9,7 @@ public class EtudiantService {
 	private IEtudiantRepository StudRep;
 	private IUniversiteRepository UnivRep;
 	private IJournal j;
+//	private Etudiant stud;
  
 	public void setEtudRep(IEtudiantRepository StudRep) {
 		this.StudRep = StudRep;
@@ -22,31 +23,36 @@ public class EtudiantService {
 	public IJournal getJournal() {
 		return this.j;
 	}
+//	public void setStudent(Etudiant stud) {
+//		this.stud = stud;
+//	}
 	
 	boolean inscription ( int matricule, String nom, String prenom, String email,String pwd, int id_universite) throws SQLException, IOException	
 	{
 		
 	    Etudiant stud = new Etudiant(matricule, nom, prenom, email,pwd,id_universite);
-	    Universite univ=UnivRep.GetById(id_universite);
+	    Universite univ=UnivRep.GetById(id_universite ,j);
 	    
 	    j.outPut_Msg("Log: d�but de l'op�ration d'ajout de l'�tudiant avec matricule "+matricule);
 	    
+//		if (StudRep.VerifEmailMat(matricule, email))
+//	    {	return false;	}
+//		
+//		
 	    if(email == null || email.length() == 0)
 	    {
 	    	return false;
 	    }
 	    
-	    if (StudRep.Exists(matricule))
+	    if (StudRep.Exists(matricule,j))
 	    {
 	        return false;
 	    }
 	    
-		if (StudRep.Exists(email))
+		if (StudRep.Exists(email,j))
 	    {
 	        return false;
 	    }
-		
-		
 		
 		 if (univ.getPack() == TypePackage.Standard)
 	     {
@@ -57,7 +63,7 @@ public class EtudiantService {
 	    	 stud.setNbLivreMensuel_Autorise(10*2);
 	     }                           
 	     
-		 StudRep.add(stud);
+		 StudRep.add(stud ,j);
 		 j.outPut_Msg("Log: Fin de l'op�ration d'ajout de l'�tudiant avec matricule "+matricule);
 		 return true;
 	    

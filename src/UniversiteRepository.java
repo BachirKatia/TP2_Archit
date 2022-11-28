@@ -6,16 +6,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UniversiteRepository implements IUniversiteRepository {
- 	private  IJournal j;
+ 	
 	@Override
-	 public Universite GetById(int universityId ) throws SQLException, IOException {
+	 public Universite GetById(int universityId ,IJournal j) throws SQLException, IOException {
 		
 		DBConnection BD= DBConnection.getInstance();
 		Connection connect=BD.getConn(); 
 		Statement stmt = connect.createStatement();
 		j.outPut_Msg("LogBD : d�but recherche de id universit� dans la base de donn�e");
-		
-		String sql = "SELECT * FROM universite WHERE id_universite="+ universityId;
+//		
+		String sql = "SELECT * FROM universite WHERE i_univ="+ universityId;
 		ResultSet rs = stmt.executeQuery(sql);
 		rs.next();	
 		TypePackage p=TypePackage.valueOf(rs.getString(3));
@@ -23,7 +23,7 @@ public class UniversiteRepository implements IUniversiteRepository {
 			
 		j.outPut_Msg("LogBD : universit� r�cup�r�e");
 		
-		connect.close();
+//		connect.close();
 		return u;	
 	
 		

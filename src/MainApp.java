@@ -7,9 +7,12 @@ public class MainApp {
 		EtudiantService serv=new EtudiantService();
 		serv.setEtudRep(new EtudiantRepository());
 		serv.setUnivRep(new UniversiteRepository());
+	
+	
+		
 		
 		IJournal journal = new MultiMsg();
-		
+	
 		IJournal journal1 = new DetailMsg();
 		IJournal journal2 = new FileMsg();
 		IJournal journal3= 	new ScreenMsg();
@@ -26,10 +29,9 @@ public class MainApp {
 		
 		
 		try {
-			serv.inscription(2, "Guendouziiiii", "wassila", "guen@gmail.com","xxxx", 1);
+			serv.inscription(13, "katia", "bachir", "ktia@gmail.com","xxxx", 1);
 			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

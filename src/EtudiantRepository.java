@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class EtudiantRepository implements IEtudiantRepository  {
-	private IJournal journal;
+	
 	@Override
-	public void add(Etudiant E ) throws SQLException, IOException
+	public void add(Etudiant E , IJournal journal) throws SQLException, IOException
 	{
 
 		DBConnection BD= DBConnection.getInstance();
@@ -23,11 +23,11 @@ public class EtudiantRepository implements IEtudiantRepository  {
 			}else if (rs == 0){
 				journal.outPut_Msg("log : Echec de l'ajout dans la BD de l'�tudiant  du Matricule" + E.getMatricule());
 			}
-		connect.close();
+//		connect.close();
 	 }
 
 	@Override
-	public boolean Exists(String email ) throws SQLException, IOException	
+	public boolean Exists(String email ,IJournal journal) throws SQLException, IOException	
 	{
 		DBConnection BD= DBConnection.getInstance();
 		Connection connect=BD.getConn();
@@ -38,15 +38,15 @@ public class EtudiantRepository implements IEtudiantRepository  {
 		
 		if (rs){
 			journal.outPut_Msg("logBD--- :email existe dans la BD  " + email);
-			connect.close();
+//			connect.close();
 			return true;
 			}
 		journal.outPut_Msg("logBD--- : email n'existe pas " + email);	
-		connect.close();
+//		connect.close();
 		return false;
 	}
 	@Override
-	public boolean Exists(int mat ) throws SQLException, IOException	
+	public boolean Exists(int mat,IJournal journal) throws SQLException, IOException	
 	{
 		DBConnection BD= DBConnection.getInstance();
 		Connection connect=BD.getConn();
@@ -57,12 +57,18 @@ public class EtudiantRepository implements IEtudiantRepository  {
 		
 		if (rs){
 			journal.outPut_Msg("logBD--- :etudiant avec ce matricule existe d�ja dans la BD  " + mat);
-			connect.close();
+//			connect.close();
 			return true;
 			}
 		journal.outPut_Msg("logBD----: etudiant avec ce matricule n'existe pas " + mat);	
-		connect.close();
+//		connect.close();
 		return false;
 	}
+	
+//	public boolean VerifEmailMat(int Mat, String Email) throws SQLException, IOException	
+//	{
+//		return ( Exists(Email) || Exists(Mat) || Email == null || Email.length() == 0 );
+//
+//	}
 
 }

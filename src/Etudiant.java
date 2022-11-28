@@ -90,7 +90,7 @@ public class Etudiant {
 		public void setId_universite(int id_universite) {
 			this.id_universite = id_universite;
 		}
-
+ 
 
 		public String getPwd() {
 			return pwd;

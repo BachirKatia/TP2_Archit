@@ -5,15 +5,22 @@ import java.sql.SQLException;
 public class DBConnection {
 	   
 		String BDD = "TP2_DB";
-		String url = "jdbc:postgresql://localhost:5432/TP2_DB" + BDD;
+		String url = "jdbc:postgresql://localhost:5432/" + BDD;
 		String user = "postgres";
 		String passwd = "postgres";
 	    private Connection conn;
 	    private static DBConnection instance;
  
 	   
-	    private DBConnection() throws SQLException {
-			conn=DriverManager.getConnection(url, user,passwd);
+	    private DBConnection()  {
+			try {
+				conn=DriverManager.getConnection(url, user,passwd);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("erreur");
+				e.printStackTrace();
+				
+			}
 		}
 
 	    
@@ -31,3 +38,4 @@ public class DBConnection {
 		
 	
 }
+
