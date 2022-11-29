@@ -2,8 +2,10 @@
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class EtudiantRepository implements IEtudiantRepository  {
 	
@@ -71,5 +73,25 @@ public class EtudiantRepository implements IEtudiantRepository  {
 		return ( Exists(mail,j) || Exists(mat,j) || mail == null || mail.length() == 0 );
 
 	}
+	  @Override
+	    public ArrayList<Etudiant> getEtudiants() throws SQLException {
+
+	    	ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();
+
+	    	DBConnection BD= DBConnection.getInstance();
+			Connection connect= BD.getConn();
+
+			Statement stmt = connect.createStatement();
+			String sql = "SELECT * FROM Etudiant";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()) {
+				Etudiant e = new Etudiant(rs.getInt(1),rs.getString(2), rs.getString(3), rs.getString(4),null,rs.getInt(7));
+				etudiants.add(e);
+				
+			}
+
+             
+			return etudiants;
+	    }
 
 }

@@ -1,7 +1,9 @@
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class MainApp {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException, IOException {
 	
 		
 		EtudiantService serv=new EtudiantService();
@@ -24,7 +26,7 @@ public class MainApp {
 		
 		
 		serv.setJournal(journal);
-		
+		serv.ajouterBonus();
 		
 		
 		

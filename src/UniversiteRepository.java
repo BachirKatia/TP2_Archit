@@ -17,15 +17,15 @@ public class UniversiteRepository implements IUniversiteRepository {
 //		
 		String sql = "SELECT * FROM universite WHERE i_univ="+ universityId;
 		ResultSet rs = stmt.executeQuery(sql);
-		rs.next();	
+		rs.next(); 
 		TypePackage p=TypePackage.valueOf(rs.getString(3));
 		Universite u = new Universite (rs.getInt(1),rs.getString(2),p);
-			
+		
 		j.outPut_Msg("LogBD : universit� r�cup�r�e");
 		
 //		connect.close();
 		return u;	
-	
+		
 		
 	}
 	public int NmbLivre(Universite univ){
