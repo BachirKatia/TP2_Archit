@@ -104,17 +104,9 @@ public class Etudiant {
 
 		public void Bonus(Universite univ) throws SQLException {
 
-			IPackage pack;
-			if (univ.getPack() == TypePackage.Standard)
-		     {
-				pack = new Standard();
-				setNbLivreMensuel_Autorise(this.getNbLivreMensuel_Autorise() + pack.getBonus()) ;
-		     }
-		     else if (univ.getPack() == TypePackage.Premium)
-		     {
-		    	 pack = new Premium();
-		    	 setNbLivreMensuel_Autorise(this.getNbLivreMensuel_Autorise() + pack.getBonus()) ;
-		     }                          
+			AbstractFactory AF = new ConcreteCreator();
+		    IPackage pack = AF.getPackage(univ.getPack());
+			setNbLivreMensuel_Autorise(this.getNbLivreMensuel_Autorise() + pack.getBonus()) ;
 
 		}
 		
