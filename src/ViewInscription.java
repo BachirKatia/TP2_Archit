@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class ViewInscription extends JFrame{
+public class ViewInscription extends JFrame implements IViewInscription{
 	 private JFrame Jframe;
 	    private JPanel Panel;
 	    private JTextField Matricule;
@@ -113,26 +113,31 @@ public class ViewInscription extends JFrame{
 		     
 		     
 	}
-	
+	@Override
 		     public String getMatricule(){
 		    	 return this.Matricule.getText();
 		     }
-
+	@Override
 		     public String getNom() {
 		         return this.Nom.getText();
 		     }
+	@Override
 		     public String getPrenom() {
 		         return this.Prenom.getText();
 		     }
+	@Override
 		     public String getEmail() {
 		         return this.Email.getText();
 		     }
+	@Override
 		     public String getMdp() {
 		         return Mdp.getText();
 		     }
+	@Override
 		 	public String get_id_univ() {
 				return UnivId.getText();
 			}
+	@Override
 		   
 			public void setactionListener(ActionListener actionListener) {
 
@@ -140,9 +145,11 @@ public class ViewInscription extends JFrame{
 				Submit.addActionListener(actionListener);
 				Annuler.addActionListener(actionListener);
 			}
+	@Override
 			  public void Annuler_Inscription() {
 			        this.Jframe.dispose();
 			    }
+	@Override
 				public void delete_info() {
 					 this.Matricule.setText("");
 				        this.Nom.setText("");
@@ -150,21 +157,24 @@ public class ViewInscription extends JFrame{
 				        this.Email.setText("");
 				        this.Mdp.setText("");
 				        this.UnivId.setText("");}
-			  
+	@Override
 				 public void DisplayForm() { 
 				        this.Inscriptionform();
 				        this.Jframe.setVisible(true);
 				    }
+	@Override
 			  
 			  public JButton Submit() {
 					return Submit;
 				}
+	@Override
 
 				public JButton annuler() {
 					return Annuler;
 				}
+	@Override
 
-				boolean champs_validation() {
+				public boolean champs_validation() {
 			        if (getMatricule().isEmpty() || getNom().isEmpty() || getPrenom().isEmpty() || getEmail().isEmpty() || getMdp().isEmpty() || get_id_univ().isEmpty()) {
 			            this.ShowErreur("il faut remplir tous les champs !");
 			            return false;

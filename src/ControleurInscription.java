@@ -4,9 +4,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 public class ControleurInscription implements ActionListener {
-	private ViewInscription vi;
+	private IViewInscription vi;
 	private EtudiantService Service;
-	public ControleurInscription( ViewInscription viewInscription ) {
+	public ControleurInscription( IViewInscription viewInscription ) {
 
 		this.vi = viewInscription;
 		vi.setactionListener(this);
