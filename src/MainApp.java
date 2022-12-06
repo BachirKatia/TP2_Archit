@@ -26,13 +26,16 @@ public class MainApp {
 		
 		
 		serv.setJournal(journal);
-//		serv.ajouterBonus();
+		serv.ajouterBonus();
 		
 		
 		
-		ViewInscription viewInscription = new ViewInscription();
-		viewInscription.DisplayForm();
-		ControleurInscription controleurInscription = new ControleurInscription(viewInscription);
+		try {
+			serv.inscription(13, "katia", "bachir", "ktia@gmail.com","xxxx", 1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
