@@ -1,5 +1,6 @@
 package Services;
-import java.io.IOException;
+import java.io.IOException; 
+import Repos.UniversiteRepository;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,7 +34,7 @@ public class EtudiantService {
 //		this.stud = stud;
 //	}
 	
-	boolean inscription ( int matricule, String nom, String prenom, String email,String pwd, int id_universite) throws SQLException, IOException	
+	public boolean inscription ( int matricule, String nom, String prenom, String email,String pwd, int id_universite) throws SQLException, IOException	
 	{
 		
 	    Etudiant stud = new Etudiant(matricule, nom, prenom, email,pwd,id_universite);
@@ -66,7 +67,7 @@ public class EtudiantService {
 	}
 	
 	
-	
+	 
 
 public ArrayList<Etudiant> GetEtudiantParUniversitye()
 {
